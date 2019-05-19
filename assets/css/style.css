@@ -1,6 +1,10 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
 
 body { 
-    background: url("../images/lotr-background.jpg") no-repeat center center fixed; 
+    background: url("../images/lotr-background-2.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -8,9 +12,24 @@ body {
   }
 
 .game-board {
-    border: 1px solid black;
+    border: 1px solid gold;
+    height: 400px; 
+    background: gold;
+    background: rgb(255, 217, 2); 
+    background: rgba(255, 217, 2, 0.6);
+    color: white;
 }
+
+.board-header {
+    text-align: center;
+    color: white; 
+    
+
+}
+
 
 header {
     text-align: center;
+    color: gold;
+    margin: 40px;
 }
