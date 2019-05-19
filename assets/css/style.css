@@ -13,7 +13,7 @@ body {
 
 .game-board {
     border: 1px solid gold;
-    height: 400px; 
+    height: auto; 
     background: gold;
     background: rgb(255, 217, 2); 
     background: rgba(255, 217, 2, 0.6);
@@ -23,13 +23,16 @@ body {
 .board-header {
     text-align: center;
     color: white; 
-    
 
 }
 
-
 header {
     text-align: center;
-    color: gold;
+    color: white;
     margin: 40px;
+}
+
+.end {
+    text-align: center;
+    margin: 20px; 
 }
