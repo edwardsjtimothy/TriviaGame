@@ -1,17 +1,143 @@
 $(document).ready(function() {
-$("#start").on("click", start);
-$("#finish").on("click", stop);
 
+
+
+//The quiz
+
+  var quizContainer = $("#quiz");
+  var resultsContainer = $("#results");
+  var submitButton = $("#finish");
+  var lotrQuestions = [
+    {
+      question: "In which book does Boromir die?",
+      answers: {
+        a: "The Fellowship of the Ring",
+        b: "The Two Towers",
+        c: "The Return of the King",
+        d: "The Children of Húrin",
+      },
+      correctAnswer: "b",
+    },
+    {
+      question: "Who was the first Dark Lord?",
+      answers: {
+        a: "Morgoth",
+        b: "Sauron",
+        c: "Saruman",
+        d: "Derigreth the Black",
+      },
+      correctAnswer: "a",
+    },
+    {
+      question: "Who is Gimili's Dad?",
+      answers: {
+        a: "Dwalin",
+        b: "Bifur",
+        c: "Bofur",
+        d: "Glóin",
+      },
+      correctAnswer: "d",
+    },
+    {
+      question: "What is the name of Gandalf's Ring?",
+      answers: {
+        a: "Narya, the Kindler",
+        b: "Nenya, Ring of Adamant",
+        c: "Vilya, Ring of Firmanent",
+        d: "Khamûl, the Despoiler",
+      },
+      correctAnswer: "a",
+    },
+    {
+      question: "How old is Aragorn when he becomes king?",
+      answers: {
+        a: "63",
+        b: "37",
+        c: "46",
+        d: "87",
+      },
+      correctAnswer: "d",
+    },
+    {
+      question: "What do the elves call Gandalf?",
+      answers: {
+        a: "Eärendil",
+        b: "Glorfindel",
+        c: "Mithrandir",
+        d: "Ilúvatar",
+      },
+      correctAnswer: "c",
+    },
+    {
+      question: "What was the name of Bilbo's sword?",
+      answers: {
+        a: "Orcrist",
+        b: "Sting",
+        c: "Glamdring",
+        d: "Thorn",
+      },
+      correctAnswer: "b",
+    },
+    {
+      questions: "What was the password to open the Doors of Durin?",
+      answers: {
+        a: "Mellon",
+        b: "Annon Edhellen, edro hi ammen!",
+        c: "Fennas Nogothrim, lasto beth lammen.",
+        d: "Erdo!",
+      },
+      correctAnswer: "a",
+    },
+    {
+      question: "Who made the Silmarils?",
+      answers: {
+        a: "Fëanor",
+        b: "Maedhros",
+        c: "Fingolfin",
+        d: "Finwë",
+      },
+      correctAnswer: "a",
+    },
+    {
+      question: "What was the name of Minas Morgul before it fell to Mordor?",
+      answers: {
+        a: "Minas Anor",
+        b: "Cirith Ungol",
+        c: "Ephel Dúath",
+        d: "Minas Ithil",
+      },
+      correctAnswer: "d",
+    },
+  ];
+
+ function buildQuiz() {
+
+ };
+
+ function showResults() {
+
+ };
+
+
+
+
+$("#start").click(function() {
+  start();
+  buildQuiz();
+});
+
+$("#finish").click(function() {
+  showResults();
+  stop();
+});
+
+//timer to count down time remaining in game
 
 var intervalId;
 var clockRunning = false;
 var time = 90;
 
-// display timer 
-
 $("#timer").text("01:30");
-
-//timer to count down time remaining in game
 
 function start() {
     if (!clockRunning) {
