@@ -1,0 +1,16 @@
+
+body { 
+    background: url("../images/lotr-background.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+.game-board {
+    border: 1px solid black;
+}
+
+header {
+    text-align: center;
+}
