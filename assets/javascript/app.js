@@ -146,8 +146,9 @@ $(document).ready(function() {
   lotrQuestions.forEach( (currentQuestion, questionNumber) => {
 
     var answerContainer = answerContainers[questionNumber];
-    var selector = 'input[name=question'+questionNumber+']:checked';
+    var selector = `input[name=question${questionNumber}]:checked`;
     var userAnswer = (answerContainer.querySelector(selector) || {}).value;
+    console.log(userAnswer);
 
     if(userAnswer===currentQuestion.correctAnswer){
       numCorrect++;
