@@ -116,7 +116,7 @@ $(document).ready(function() {
         for (letter in currentQuestion.answers) {
 
           answers.push(
-            `<label>
+            `<label style="padding: 10px; margin: margin-left: 10px;">
             <input type="radio" name="question${questionNumber}" value="${letter}">
             ${letter} :
             ${currentQuestion.answers[letter]}
@@ -165,6 +165,7 @@ $(document).ready(function() {
     });
 
     //display results 
+  $(quizContainer).hide();
   $("#results").html(`You got ${numCorrect} right and ${numIncorrect} wrong out of ten!`)
  };
 
@@ -174,7 +175,11 @@ $("#start").click(function() {
   $("#timer").text("01:30");
   Quiz();
   $("#start").remove();
-  // $("intro-message").replaceText("Get Ready!", "Go!");
+  
+  // $("intro-message").replace("Get Ready!", "Go!");
+  // $("#intro-message").text("Go!"));
+  // $("#intro-message").html($("#intro-message").html().replace("Get Ready!", "Go!")
+
   var endButton = $(`<button id="finish" type="button" class="btn btn-light">Finish</button>`);
   $("#end").append(endButton);
 
