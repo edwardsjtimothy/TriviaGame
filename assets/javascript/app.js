@@ -106,7 +106,7 @@ $(document).ready(function() {
     },
   ];
 
-  // looping through question array and generating questions and buttons in the html (learned about template literals), 
+  // looping through question array (learned about template literals and arrow functions), 
   function Quiz() {
     var output = [];
     lotrQuestions.forEach(
@@ -114,7 +114,8 @@ $(document).ready(function() {
 
         var answers = [];
         for (letter in currentQuestion.answers) {
-
+          
+          //generating html for multiple choice option buttons
           answers.push(
             `<label style="padding: 10px; margin: margin-left: 10px;">
             <input type="radio" name="question${questionNumber}" value="${letter}">
@@ -124,6 +125,7 @@ $(document).ready(function() {
           );
         }
 
+        //generating divs questions and answer text 
         output.push(
           `<div class="question"> ${currentQuestion.question} </div>
         <div class="answers"> ${answers.join('')} </div>`
@@ -131,6 +133,7 @@ $(document).ready(function() {
       }
     );
 
+    //displaying quiz on page
     $("#quiz").html(output.join(''));
   };
 
@@ -169,14 +172,14 @@ $(document).ready(function() {
   $("#results").html(`You got ${numCorrect} right and ${numIncorrect} wrong out of ten!`)
  };
 
-
+// start button functionality
 $("#start").click(function() {
   start();
   $("#timer").text("01:30");
   Quiz();
   $("#start").remove();
   
-  // $("intro-message").replace("Get Ready!", "Go!");
+  // $("#intro-message").replace("Get Ready!", "Go!");
   // $("#intro-message").text("Go!"));
   // $("#intro-message").html($("#intro-message").html().replace("Get Ready!", "Go!")
 
@@ -185,7 +188,7 @@ $("#start").click(function() {
 
 });
 
-
+//finish button functionality
 $("#end").click(function() {
   $("#end").remove();
   results();
