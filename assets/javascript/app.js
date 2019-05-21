@@ -1,7 +1,5 @@
 $(document).ready(function() {
-
-
-
+ 
 //The quiz
 
   var quizContainer = $("#quiz");
@@ -110,44 +108,43 @@ $(document).ready(function() {
     },
   ];
 
- function buildQuiz() {
+ function Quiz() {
+  var output = [];
+  lotrQuestions.forEach(
+    (currentQuestion, questionNumber) => {
+      
+      var answers = [];
+      for(letter in currentQuestion.answers){
 
-   var output = [];
-   myQuestions.forEach(
-     (currentQuestion, questionNumber) => {
-       var answers = [];
-       for (letter in currentQuestion.answers) {
-         answers.push(
-           `<label>
+        answers.push(
+          `<label>
             <input type="radio" name="question${questionNumber}" value="${letter}">
             ${letter} :
             ${currentQuestion.answers[letter]}
           </label>`
-         );
-       };
+        );
+      }
 
-       output.push(
+      output.push(
         `<div class="question"> ${currentQuestion.question} </div>
         <div class="answers"> ${answers.join('')} </div>`
       );
+      console.log(output);
     }
   );
 
-  // finally combine our output list into one string of HTML and put it on the page
-  quizContainer.innerHTML = output.join('');
-};
+    $(quizContainer).html = output.join('');
+  //   quizContainer.innerHTML = output.join('');
+ };
 
-
- function showResults() {
+ function Results() {
 
  };
 
 
-
-
 $("#start").click(function() {
   start();
-  buildQuiz();
+  Quiz();
 });
 
 $("#finish").click(function() {
@@ -200,17 +197,5 @@ function timeConverter(t) {
     clockRunning = false;
   }
 
-
-
-
-
-//end of game should display questions correct/incorrect 
-
-
-// question and answer system
-
-
-
-//submit button
 
 });
