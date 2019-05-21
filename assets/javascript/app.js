@@ -173,16 +173,28 @@ $("#start").click(function() {
   start();
   $("#timer").text("01:30");
   Quiz();
-  
-  var endButton = $(`<button id="finish" type="button" class="btn btn-light" style="position: relative; left: 190px; margin-bottom: 20px;">Finish</button>`);
+  $("#start").remove();
+  // $("intro-message").replaceText("Get Ready!", "Go!");
+  var endButton = $(`<button id="finish" type="button" class="btn btn-light">Finish</button>`);
   $("#end").append(endButton);
-  
+
 });
 
-$("#finish").click(function() {
+
+$("#end").click(function() {
+  $("#end").remove();
   results();
   stop();
 });
+
+// checks every half second to see if timer is at zero
+setInterval(function() {
+  if (time === 0) {
+    $("#end").remove();
+    stop();
+    results();
+  };
+}, 500);
 
 //timer to count down time remaining in game
 

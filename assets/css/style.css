@@ -32,11 +32,11 @@ header {
     margin: 40px;
 }
 
-.end {
+#end {
     text-align: center;
     margin: 20px; 
 }
 
-.start {
+#start {
     margin-bottom: 20px;
 }
