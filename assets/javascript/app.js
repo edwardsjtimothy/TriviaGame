@@ -174,18 +174,15 @@ $(document).ready(function() {
 
 // start button functionality
 $("#start").click(function() {
+  
   start();
   $("#timer").text("01:30");
   Quiz();
   $("#start").remove();
   
-  // $("#intro-message").replace("Get Ready!", "Go!");
-  // $("#intro-message").text("Go!"));
-  // $("#intro-message").html($("#intro-message").html().replace("Get Ready!", "Go!")
-
   var endButton = $(`<button id="finish" type="button" class="btn btn-light">Finish</button>`);
   $("#end").append(endButton);
-
+  
 });
 
 //finish button functionality
@@ -213,15 +210,16 @@ var time = 90;
 
 
 function start() {
-    if (!clockRunning) {
-      intervalId = setInterval(count, 1000);
-      clockRunning = true;
-    }
-  };
+  if (!clockRunning) {
+    intervalId = setInterval(count, 1000);
+    clockRunning = true;
+    $("#intro-message").text("Go!");
+  }
+};
 
 function count() {
-    time--;
-    var converted = timeConverter(time);
+  time--;
+  var converted = timeConverter(time);
     console.log(converted);
     $("#timer").text(converted);
 };
@@ -245,6 +243,7 @@ function timeConverter(t) {
 
   function stop() {
 
+    $("#intro-message").text("Done!");
     clearInterval(intervalId);
     clockRunning = false;
   };
