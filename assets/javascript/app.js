@@ -1,5 +1,5 @@
 $(document).ready(function() {
- 
+
 //The quiz
 
   var quizContainer = $("#quiz");
@@ -7,7 +7,7 @@ $(document).ready(function() {
   var submitButton = $("#finish");
   var lotrQuestions = [
     {
-      question: "In which book does Boromir die?",
+      question: "1. In which book does Boromir die?",
       answers: {
         a: "The Fellowship of the Ring",
         b: "The Two Towers",
@@ -17,7 +17,7 @@ $(document).ready(function() {
       correctAnswer: "b",
     },
     {
-      question: "Who was the first Dark Lord?",
+      question: "2. Who was the first Dark Lord?",
       answers: {
         a: "Morgoth",
         b: "Sauron",
@@ -27,7 +27,7 @@ $(document).ready(function() {
       correctAnswer: "a",
     },
     {
-      question: "Who is Gimili's Dad?",
+      question: "3. Who is Gimili's Dad?",
       answers: {
         a: "Dwalin",
         b: "Bifur",
@@ -37,7 +37,7 @@ $(document).ready(function() {
       correctAnswer: "d",
     },
     {
-      question: "What is the name of Gandalf's Ring?",
+      question: "4. What is the name of Gandalf's Ring?",
       answers: {
         a: "Narya, the Kindler",
         b: "Nenya, Ring of Adamant",
@@ -47,7 +47,7 @@ $(document).ready(function() {
       correctAnswer: "a",
     },
     {
-      question: "How old is Aragorn when he becomes king?",
+      question: "5. How old is Aragorn when he becomes king?",
       answers: {
         a: "63",
         b: "37",
@@ -57,7 +57,7 @@ $(document).ready(function() {
       correctAnswer: "d",
     },
     {
-      question: "What do the elves call Gandalf?",
+      question: "6. What do the elves call Gandalf?",
       answers: {
         a: "Eärendil",
         b: "Glorfindel",
@@ -67,7 +67,7 @@ $(document).ready(function() {
       correctAnswer: "c",
     },
     {
-      question: "What was the name of Bilbo's sword?",
+      question: "7. What was the name of Bilbo's sword?",
       answers: {
         a: "Orcrist",
         b: "Sting",
@@ -77,7 +77,7 @@ $(document).ready(function() {
       correctAnswer: "b",
     },
     {
-      questions: "What was the password to open the Doors of Durin?",
+      question: "8. What was the password to open the Doors of Durin?",
       answers: {
         a: "Mellon",
         b: "Annon Edhellen, edro hi ammen!",
@@ -87,7 +87,7 @@ $(document).ready(function() {
       correctAnswer: "a",
     },
     {
-      question: "Who made the Silmarils?",
+      question: "9. Who made the Silmarils?",
       answers: {
         a: "Fëanor",
         b: "Maedhros",
@@ -97,7 +97,7 @@ $(document).ready(function() {
       correctAnswer: "a",
     },
     {
-      question: "What was the name of Minas Morgul before it fell to Mordor?",
+      question: "10. What was the name of Minas Morgul before it fell to Mordor?",
       answers: {
         a: "Minas Anor",
         b: "Cirith Ungol",
@@ -108,37 +108,57 @@ $(document).ready(function() {
     },
   ];
 
- function Quiz() {
-  var output = [];
-  lotrQuestions.forEach(
-    (currentQuestion, questionNumber) => {
-      
-      var answers = [];
-      for(letter in currentQuestion.answers){
+  function Quiz() {
+    var output = [];
+    lotrQuestions.forEach(
+      (currentQuestion, questionNumber) => {
 
-        answers.push(
-          `<label>
+        var answers = [];
+        for (letter in currentQuestion.answers) {
+
+          answers.push(
+            `<label>
             <input type="radio" name="question${questionNumber}" value="${letter}">
             ${letter} :
             ${currentQuestion.answers[letter]}
           </label>`
+          );
+        }
+
+        output.push(
+          `<div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join('')} </div>`
         );
       }
+    );
 
-      output.push(
-        `<div class="question"> ${currentQuestion.question} </div>
-        <div class="answers"> ${answers.join('')} </div>`
-      );
-      console.log(output);
+    $("#quiz").html(output.join(''));
+  };
+
+ function results() {
+
+  var answerContainers = $(quizContainer).find(".answers");
+  
+  var numCorrect = 0;
+  var numIncorrect = 0;
+
+
+  lotrQuestions.forEach( (currentQuestion, questionNumber) => {
+
+    var answerContainer = answerContainers[questionNumber];
+    var selector = 'input[name=question'+questionNumber+']:checked';
+    var userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+    if(userAnswer===currentQuestion.correctAnswer){
+      numCorrect++;
+    
+    } else {
+      numIncorrect++;
     }
-  );
+      
+  });
 
-    $(quizContainer).html = output.join('');
-  //   quizContainer.innerHTML = output.join('');
- };
-
- function Results() {
-
+  $("#results").html(`You got ${numCorrect} right and ${numIncorrect} wrong out of ten!`)
  };
 
 
@@ -148,7 +168,7 @@ $("#start").click(function() {
 });
 
 $("#finish").click(function() {
-  showResults();
+  results();
   stop();
 });
 
@@ -165,14 +185,14 @@ function start() {
       intervalId = setInterval(count, 1000);
       clockRunning = true;
     }
-  }
+  };
 
 function count() {
     time--;
     var converted = timeConverter(time);
     console.log(converted);
     $("#timer").text(converted);
-}
+};
 
 function timeConverter(t) {
 
@@ -189,13 +209,13 @@ function timeConverter(t) {
       minutes = "0" + minutes;
     }
     return minutes + ":" + seconds;
-  }
+  };
 
   function stop() {
 
     clearInterval(intervalId);
     clockRunning = false;
-  }
+  };
 
 
 });
