@@ -3,8 +3,6 @@ $(document).ready(function() {
 //The quiz
 
   var quizContainer = $("#quiz");
-  var resultsContainer = $("#results");
-  var submitButton = $("#finish");
   var lotrQuestions = [
     {
       question: "1. In which book does Boromir die?",
@@ -108,6 +106,7 @@ $(document).ready(function() {
     },
   ];
 
+  // looping through question array and generating questions and buttons in the html (learned about template literals), 
   function Quiz() {
     var output = [];
     lotrQuestions.forEach(
@@ -135,37 +134,49 @@ $(document).ready(function() {
     $("#quiz").html(output.join(''));
   };
 
- function results() {
 
-  var answerContainers = $(quizContainer).find(".answers");
-  
-  var numCorrect = 0;
-  var numIncorrect = 0;
+  // function to loop through quiz answers and identify whether user was right or wrong
+  function results() {
+    //defining variable of available answers
+    var answerContainers = $(quizContainer).find(".answers");
 
+    var numCorrect = 0;
+    var numIncorrect = 0;
 
-  lotrQuestions.forEach( (currentQuestion, questionNumber) => {
+//looping through quiz and checking user input against correct answer
+    lotrQuestions.forEach((currentQuestion, questionNumber) => {
 
-    var answerContainer = answerContainers[questionNumber];
-    var selector = `input[name=question${questionNumber}]:checked`;
-    var userAnswer = (answerContainer.querySelector(selector) || {}).value;
-    console.log(userAnswer);
-
-    if(userAnswer===currentQuestion.correctAnswer){
-      numCorrect++;
-    
-    } else {
-      numIncorrect++;
-    }
+      var answerContainer = answerContainers[questionNumber];
       
-  });
+      //defining variable to track which answer the user selected
+      var selector = `input[name=question${questionNumber}]:checked`;
+      
+      //defining variable to store user answer (or lack of answer with empty object)
+      var userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
+      // if user's answer matches correct answer, add 1 to numCorrect. If user answer is incorrect, add 1 to numIncorrect
+      if (userAnswer === currentQuestion.correctAnswer) {
+        numCorrect++;
+
+      } else {
+        numIncorrect++;
+      }
+
+    });
+
+    //display results 
   $("#results").html(`You got ${numCorrect} right and ${numIncorrect} wrong out of ten!`)
  };
 
 
 $("#start").click(function() {
   start();
+  $("#timer").text("01:30");
   Quiz();
+  
+  var endButton = $(`<button id="finish" type="button" class="btn btn-light" style="position: relative; left: 190px; margin-bottom: 20px;">Finish</button>`);
+  $("#end").append(endButton);
+  
 });
 
 $("#finish").click(function() {
@@ -179,7 +190,7 @@ var intervalId;
 var clockRunning = false;
 var time = 90;
 
-$("#timer").text("01:30");
+
 
 function start() {
     if (!clockRunning) {
