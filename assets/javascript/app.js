@@ -169,7 +169,7 @@ $(document).ready(function() {
 
     //display results 
   $(quizContainer).hide();
-  $("#results").html(`You got ${numCorrect} right and ${numIncorrect} wrong out of ten!`)
+  $("#results").html(`You got ${numCorrect} right out of ten!`)
  };
 
 // start button functionality
